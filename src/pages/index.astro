@@ -1,11 +1,12 @@
----
-import { SUPPORTED_LANGUAGES } from "../i18n/translations";
-const lang = navigator.language.slice(0, 2);
-const isSupported = SUPPORTED_LANGUAGES.includes(lang);
+<script>
+  import { SUPPORTED_LANGUAGES } from "../i18n/translations";
+  const lang = navigator.language.slice(0, 2);
+  const isSupported = SUPPORTED_LANGUAGES.includes(lang);
+  console.log(isSupported);
 
-if (isSupported) {
-  return Astro.redirect(`/${lang}/`);
-}
-
-return Astro.redirect(`/en/`);
----
+  if (isSupported) {
+    window.location.replace(`/${lang}/`);
+  } else {
+    window.location.replace(`/en/`);
+  }
+</script>
