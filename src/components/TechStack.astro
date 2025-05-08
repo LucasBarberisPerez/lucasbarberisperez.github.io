@@ -1,0 +1,114 @@
+---
+import { DB_TECH_ICON_LIST, FRONTEND_TECH_ICON_LIST, BACKEND_TECH_ICON_LIST } from "../lib/icons";
+import { t } from "../i18n/translations";
+---
+
+<section class="tech_container">
+  <div class="bento">
+    <div class="bento_item title">
+      <h2>{t('technologies.title')}</h2>
+      <p>{t('technologies.description')}</p>
+    </div>
+    <div class="bento_item frontend">
+      <h3>Frontend</h3>
+      <div>
+        <img src={FRONTEND_TECH_ICON_LIST["html"]} alt="html" />
+        <img src={FRONTEND_TECH_ICON_LIST["css"]} alt="css" />
+        <img src={FRONTEND_TECH_ICON_LIST["javascript"]} alt="javascript" />
+        <img src={FRONTEND_TECH_ICON_LIST["typescript"]} alt="typescript" />
+        <img src={FRONTEND_TECH_ICON_LIST["react"]} alt="react" />
+        <img src={FRONTEND_TECH_ICON_LIST["nextjs"]} alt="nextjs" />
+        <img src={FRONTEND_TECH_ICON_LIST["astro"]} alt="astro" />
+        <img src={FRONTEND_TECH_ICON_LIST["tailwind"]} alt="tailwind" />
+        <img src={FRONTEND_TECH_ICON_LIST["sass"]} alt="sass" />
+      </div>
+    </div>
+    <div class="bento_item db">
+      <h3>{t('technologies.db')}</h3>
+      <div>
+        <img src={DB_TECH_ICON_LIST["oracle"]} alt="oracle" />
+        <img src={DB_TECH_ICON_LIST["mysql"]} alt="mysql" />
+        <img src={DB_TECH_ICON_LIST["mongodb"]} alt="mongodb" />
+        <img src={DB_TECH_ICON_LIST["sqlite"]} alt="sqlite" />
+      </div>
+    </div>
+    <div class="bento_item backend">
+      <h3>Backend</h3>
+      <div>
+        <img src={BACKEND_TECH_ICON_LIST["java"]} alt="java" />
+        <img src={BACKEND_TECH_ICON_LIST["spring"]} alt="spring" />
+        <img src={BACKEND_TECH_ICON_LIST["nodejs"]} alt="nodejs" />
+        <img src={BACKEND_TECH_ICON_LIST["express"]} alt="express" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "../scss/Breakpoints.scss" as *;
+  @use "../scss/Colors.scss" as colors;
+  section.tech_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  div.bento {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background-color: colors.$bg-primary;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    @media (min-width: $tablet_breakpoint) {
+      max-width: 70%;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+    @media ((min-width: $desktop_breakpoint)) {
+      width: 60%;
+    }
+    div.bento_item {
+      padding: 0.5rem;
+      width: 100%;
+      height: 100%;
+      border-radius: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: start;
+    }
+    div.bento_item.title {
+      grid-column: span 3;
+      text-align: start;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      gap: 0.5rem;
+    }
+    div.bento_item.backend {
+      grid-column: span 3;
+    }
+    div.bento_item.frontend {
+      grid-column: span 3;
+      @media (min-width: $tablet_breakpoint) {
+        grid-column: span 2;
+      }
+    }
+    div.bento_item.db {
+      grid-column: span 3;
+      @media (min-width: $tablet_breakpoint) {
+        grid-column: span 1;
+      }
+    }
+  }
+</style>

@@ -1,0 +1,96 @@
+---
+import logo from "../../assets/logo.svg";
+import LanguagePicker from "./LanguagePicker.astro";
+---
+
+<script>
+  function initHeaderEvents() {
+    const header = document.querySelector("header");
+    if (header !== null) {
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 0) {
+          header.classList.add("shadow");
+        } else {
+          header.classList.remove("shadow");
+        }
+      });
+    }
+  }
+  initHeaderEvents();
+  document.addEventListener("astro:after-swap", initHeaderEvents);
+
+  
+</script>
+
+<header>
+  <nav>
+    <a href={`/${Astro.currentLocale || "en"}/`} class="logo">
+      <img src={logo.src} alt="Lucas Barberis logo" />
+    </a>
+
+    <LanguagePicker language={Astro.currentLocale || "en"} />
+  </nav>
+</header>
+
+<style lang="scss">
+  @use "../../scss/Colors.scss" as colors;
+  @use "../../scss/Breakpoints.scss" as *;
+  header {
+    width: 100%;
+    background-color: colors.$bg-primary;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    transition: all 0.5s ease-in-out;
+  }
+
+  nav {
+    margin: auto;
+    width: 100%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    a.logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+      }
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    @media (min-width: $tablet_breakpoint) {
+      width: 70%;
+    }
+    @media (min-width: $desktop_breakpoint) {
+      width: 60%;
+    }
+  }
+  ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style-type: none;
+    li {
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        transform: scale(1.1);
+        text-decoration: underline;
+      }
+      a {
+        text-decoration: none;
+        color: #000;
+        font-size: 1.2rem;
+      }
+    }
+  }
+</style>

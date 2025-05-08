@@ -1,0 +1,45 @@
+@use "./Colors.scss" as *;
+div.copy_popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div {
+    background-color: #9be569;
+    padding: 1rem;
+    font-weight: bold;
+    text-wrap: pretty;
+    border-radius: 0.5rem;
+  }
+}
+
+// applies border to the first div of each section except the first and last
+main section:not(:last-of-type):not(:first-of-type) > div {
+  border-bottom: 1px solid #f1f0f0;
+}
+
+
+//apply the blur in the header when scrolling down.
+header.shadow{
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  span#lang_text{
+    color: #fff;
+  }
+}
+
+
+//a shit solution for global scope for <p> translated with styles in an inner html..
+p.translated{
+  text-wrap: pretty;
+  text-overflow: ellipsis;
+  
+}
+
+

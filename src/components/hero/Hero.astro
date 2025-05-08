@@ -1,0 +1,114 @@
+---
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { BiLogoGmail } from "react-icons/bi";
+import { SOCIAL_LINKS } from "../../lib/socials";
+import { t } from "../../i18n/translations";
+---
+
+<section>
+  <div class="hero">
+    <div class="info">
+      <h1>Lucas Barberis Pérez</h1>
+      <h2>{t("hero.role")}</h2>
+      <div class="social-media">
+        <a href={SOCIAL_LINKS["linkedin"]}>
+          <FaLinkedin />
+        </a>
+        <a href={SOCIAL_LINKS["github"]}>
+          <FaGithub />
+        </a>
+
+        <BiLogoGmail id="mail-icon" />
+        <script src="./copy-mail.ts"></script>
+      </div>
+
+      <p>
+       {t("hero.resume")}
+      </p>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "../../scss/Breakpoints.scss" as *;
+
+  section {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #efeeef;
+    @media (min-width: $tablet_breakpoint) {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
+
+  img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    display: block;
+  }
+
+  div.hero {
+    width: 100%;
+    padding: 1rem;
+    display: grid;
+    grid-template-rows: auto;
+    gap: 0.5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    @media (min-width: $tablet_breakpoint) {
+      max-width: 70%;
+    }
+    @media (min-width: $desktop_breakpoint) {
+      max-width: 60%;
+    }
+  }
+
+  div.info {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 0.5rem;
+
+    h1 {
+      font-size: 1.8rem;
+    }
+    h2 {
+      font-size: 1.4rem;
+    }
+
+    div.social-media {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      a,
+      svg {
+        display: flex;
+        align-items: center;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+          scale: 1.1;
+        }
+      }
+      svg {
+        font-size: 1.5rem;
+        color: black;
+        cursor: pointer;
+      }
+      a svg {
+        font-size: 1.5rem;
+        color: black;
+        cursor: pointer;
+      }
+    }
+  }
+</style>

@@ -1,0 +1,19 @@
+<div>
+  <slot />
+</div>
+
+<style lang="scss">
+  div {
+    width: 100%;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

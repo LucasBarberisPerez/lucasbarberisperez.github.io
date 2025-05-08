@@ -1,0 +1,83 @@
+---
+import ProjectContainer from "./ProjectContainer.astro";
+import ProjectItem from "./ProjectItem.astro";
+import {t} from "../../i18n/translations"
+---
+
+<section>
+  <div class="oustanding">
+      <h2>{t("projects.title")}</h2>
+      <p>
+        {t("projects.description")}
+      </p>
+      <ProjectContainer>
+        <ProjectItem
+        id="1"
+          image="XBLOGGERS"
+          title="Xbloggers"
+          description="Plataforma de blog gratuita"
+          url="https://lucasbarberis.vercel.app"
+          github="https://github.com/LucasBarberis/lucasbarberis.vercel.app"
+        />
+        <ProjectItem
+          id="2"
+          image="XBLOGGERS"
+          title="Vote System"
+          description="Plataforma de votación para comunidades"
+          url="https://lucasbarberis.vercel.app"
+          github="https://github.com/LucasBarberis/lucasbarberis.vercel.app"
+        />
+        <ProjectItem
+          id="3"
+          image="XBLOGGERS"
+          title="Lug & Reva security"
+          description="Web para empresa de seguridad"
+          url="https://lucasbarberis.vercel.app"
+          github="https://github.com/LucasBarberis/lucasbarberis.vercel.app"
+        />
+      </ProjectContainer>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "../../scss/Breakpoints.scss" as *;
+  @use "../../scss/Colors.scss" as colors;
+  section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  div.oustanding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 0.5rem;
+    background-color: colors.$bg-primary;
+    @media (min-width: $tablet_breakpoint) {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+      width: 70%;
+    }
+    @media (min-width: $desktop_breakpoint) {
+      width: 60%;
+    }
+  }
+  a.link {
+    text-decoration: underline;
+    color: #000;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      color: #fe5732;
+    }
+  }
+</style>

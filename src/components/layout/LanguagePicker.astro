@@ -1,0 +1,145 @@
+---
+interface Props {
+  language: string;
+}
+import americanFlag from "../../assets/language/english.svg";
+import spanishFlag from "../../assets/language/spain.svg";
+let { language }: Props = Astro.props;
+const languagesSupported: Record<string, any> = {
+  es: { flag_url: spanishFlag.src, link: "/es/" },
+  en: { flag_url: americanFlag.src, link: "/en/" },
+};
+const languageSelected = languagesSupported[language];
+const LanguagesSupportedNotSelected = Object.entries(languagesSupported).filter(
+  ([key]) => key !== language
+);
+---
+
+<script>
+  function initLanguagePicker() {
+    const button = document.querySelector("button.language");
+    const flags = document.querySelector("div.flags");
+    let isOpen = false;
+    let outsideClickHandler = (e: MouseEvent) => {
+      if (button && flags) {
+        if (!button.contains(e.target as Node) && !flags.contains(e.target as Node)) {
+          isOpen = false;
+          flags.classList.add("hidden");
+          document.removeEventListener("click", outsideClickHandler);
+        }
+      }
+    };
+
+    if (button && flags) {
+      button.addEventListener("click", () => {
+        isOpen = !isOpen;
+        flags.classList.toggle("hidden", !isOpen);
+        if (isOpen) {
+          setTimeout(() => {
+            //avoid execute the listener with the same click
+            document.addEventListener("click", outsideClickHandler);
+          }, 0);
+        }
+      });
+    }
+  }
+  initLanguagePicker();
+  document.addEventListener("astro:after-swap", initLanguagePicker);
+</script>
+
+<div class="language_picker">
+  <button class="language">
+    <img src={languageSelected.flag_url} alt="actual language" />
+    <span id="lang_text">{language.toUpperCase()}</span>
+    <div class="flags hidden">
+      {
+        LanguagesSupportedNotSelected.map(([key, value]) => (
+          <a href={value.link}  >
+            <img src={value.flag_url} alt={key} /> <span>{key.toUpperCase()}</span>
+          </a>
+        ))
+      }
+    </div>
+  </button>
+</div>
+
+<style lang="scss">
+  @use "../../scss/Colors.scss" as colors;
+
+  .hidden {
+    display: none !important;
+  }
+  div.language_picker {
+    position: relative;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+
+    img {
+      width: 2rem;
+      height: 2rem;
+    }
+    button.language {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      gap: 0.2rem;
+      border: none;
+      padding: 0.2rem;
+      background-color: transparent;
+      cursor: pointer;
+      span {
+        transition: all 0.2s ease-in-out;
+        transition-delay: 0.3s;
+        font-weight: bold;
+        color: colors.$font-primary;
+        text-decoration: none;
+      }
+    }
+    div.flags {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 105%;
+      flex-direction: column;
+      border-radius: 0.5rem;
+      background-color: colors.$bg-tertiary;
+      &::before {
+        content: "";
+        position: absolute;
+
+        top: -0.4rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 0.4rem solid transparent;
+        border-right: 0.4rem solid transparent;
+        border-bottom: 0.4rem solid colors.$bg-tertiary;
+      }
+      a {
+        text-decoration: none;
+        padding: 0.2rem;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 0.2rem;
+        cursor: pointer;
+
+        &:hover {
+          span {
+            color: colors.$links;
+          }
+        }
+        span {
+          font-weight: bold;
+          color: colors.$font-primary;
+          text-decoration: none;
+          transition: all 0.2s ease-in-out;
+        }
+      }
+    }
+  }
+</style>

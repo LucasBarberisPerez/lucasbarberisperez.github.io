@@ -1,0 +1,90 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  slogan?: string;
+  description: string;
+  url: string;
+  github: string;
+  image?: string;
+}
+const { id, title, description, url, github, image }: Props = Astro.props as Props;
+---
+
+<div class="project_item">
+  <img
+    src={`https://img.shields.io/badge/${image}-100000?style=for-the-badge&logoColor=white} alt={title}`}
+  />
+  <div class="project_item_description">
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <div class="project_item_links">
+      <a href={url} target="_blank"> Demo </a>
+      <a href={github} target="_blank"> Repositorio </a>
+    </div>
+  </div>
+
+</div>
+
+<style lang="scss">
+  @use "../../scss/Breakpoints.scss" as *;
+  @use "../../scss/Colors.scss" as colors;
+  div.project_item {
+    padding: 0.5rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    gap: 1rem;
+    border-left: 0.1rem black solid;
+    border-right: 0.1rem black solid;
+    border-radius: 0.5rem;
+    @media (min-width: $mobile_breakpoint) {
+      
+    }
+    img {
+      max-width: 9.375rem;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      border: 0.1rem black solid;
+    }
+    h3 {
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    a {
+      padding: 0.25rem;
+      border: 0.1rem black solid;
+      
+      border-radius: 0.5rem;
+      text-decoration: none;
+      color: colors.$font-primary;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        color: colors.$links;
+        border-color: colors.$links;
+        transform: scale(1.1);
+      }
+    }
+
+    div.project_item_links {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    div.project_item_description{
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0.5rem;
+      
+    }
+  }
+</style>

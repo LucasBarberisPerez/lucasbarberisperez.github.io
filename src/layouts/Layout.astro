@@ -1,0 +1,47 @@
+---
+import { loadTranslation} from "../i18n/translations";
+import Header from "../components/layout/Header.astro";
+import { ClientRouter } from "astro:transitions";
+const lang = Astro.currentLocale || "en";
+loadTranslation(lang);
+---
+
+<!doctype html>
+<html lang={Astro.currentLocale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Lucas Barberis Pérez portfolio</title>
+    <ClientRouter />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style lang="scss" is:global>
+  @use "../scss/Global";
+  @use "../scss/Colors.scss" as colors;
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap");
+  :root {
+    --font-family: "Poppins", sans-serif;
+  }
+  body {
+    width: 100%;
+    height: 100%;
+    font-family: var(--font-family);
+    background-color: colors.$bg-main;
+    color: colors.$font-primary;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+</style>

@@ -1,0 +1,69 @@
+---
+//TODO: translate section
+import { t } from "../../i18n/translations";
+---
+
+<section>
+  <div class="about">
+    <h2>{t('about.title')}</h2>
+    <div class="info" set:html={t("about.info")}>
+    
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use "../../scss/Colors.scss" as colors;
+  @use "../../scss/Breakpoints.scss" as *;
+  section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  div.about {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 100%;
+    background-color: colors.$bg-primary;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    @media (min-width: $tablet_breakpoint) {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+      width: 70%;
+    }
+    @media (min-width: $desktop_breakpoint) {
+      width: 60%;
+    }
+    
+  }
+
+  div.info {
+    padding: 1rem;
+    margin: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+   
+    
+    @media (min-width: $tablet_breakpoint) {
+      width: 90%;
+    }
+    @media (min-width: $desktop_breakpoint) {
+      width: 60%;
+    }
+   
+  }
+
+  
+</style>
